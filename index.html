@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock, paper, scissors</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      function computerPlay() {
+        let cpuRandom = Math.floor(Math.random() * Math.floor(3));
+        let cpuHand;
+        switch (cpuRandom) {
+          case 0:
+            cpuHand = "rock";
+            break;
+          case 1:
+            cpuHand = "paper";
+            break;
+          case 2:
+            cpuHand = "scissors";
+        }
+        return cpuHand;
+      }
+      
+    </script>
+  </body>
+</html>
