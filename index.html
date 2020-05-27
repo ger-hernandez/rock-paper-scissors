@@ -6,64 +6,67 @@
   <body>
     <script>
       "use strict";
-      function computerPlay() {
-        let cpuRandom = Math.floor(Math.random() * Math.floor(3));
-        let cpuHand;
-        switch (cpuRandom) {
-          case 0:
-            cpuHand = "rock";
-            break;
-          case 1:
-            cpuHand = "paper";
-            break;
-          case 2:
-            cpuHand = "scissors";
+      function game() {
+        for (let i = 0; i < 5; i++) {
+          function computerPlay() {
+            let cpuRandom = Math.floor(Math.random() * Math.floor(3));
+            let cpuHand;
+            switch (cpuRandom) {
+              case 0:
+                cpuHand = "rock";
+                break;
+              case 1:
+                cpuHand = "paper";
+                break;
+              case 2:
+                cpuHand = "scissors";
+            }
+            return cpuHand;
+          }
+          const playerSelection = prompt('Choose, rock, paper or scissors');
+          let computerSelection = computerPlay();
+          console.log("the computer played " + computerSelection);
+
+          function playRound(playerSelection, computerSelection) {
+            playerSelection = playerSelection.toLowerCase();
+            if (playerSelection === computerSelection) {
+              return "It's a draw!";
+            } else if (
+              playerSelection === "rock" &&
+              computerSelection == "scissors"
+            ) {
+              return "Rock beats Scissors you win!";
+            } else if (
+              playerSelection === "scissors" &&
+              computerSelection === "paper"
+            ) {
+              return "Scissors beats paper you win!";
+            } else if (
+              playerSelection === "paper" &&
+              computerSelection === "rock"
+            ) {
+              return "Paper beats rock you win!";
+            } else if (
+              computerSelection === "paper" &&
+              playerSelection === "rock"
+            ) {
+              return "Paper beats rock you lose!";
+            } else if (
+              computerSelection === "rock" &&
+              playerSelection === "scissors"
+            ) {
+              return "Rock beats scissors you lose!";
+            } else if (
+              computerSelection === "scissors" &&
+              playerSelection === "paper"
+            ) {
+              return "Scissors beats paper you lose!";
+            }
+          }
+          console.log(playRound(playerSelection, computerSelection));
         }
-        return cpuHand;
       }
-
-      const playerSelection = "ROck";
-      let computerSelection = computerPlay();
-      console.log("the computer played " + computerSelection);
-
-      function playRound(playerSelection, computerSelection) {
-        playerSelection = playerSelection.toLowerCase();  
-        if (playerSelection === computerSelection) {
-          return "It's a draw!";
-        } else if (
-          playerSelection === "rock" &&
-          computerSelection == "scissors"
-        ) {
-          return "Rock beats Scissors you win!";
-        } else if (
-          playerSelection === "scissors" &&
-          computerSelection === "paper"
-        ) {
-          return "Scissors beats paper you win!";
-        } else if (
-          playerSelection === "paper" &&
-          computerSelection === "rock"
-        ) {
-          return "Paper beats rock you win!";
-        } else if (
-          computerSelection === "paper" &&
-          playerSelection === "rock"
-        ) {
-          return "Paper beats rock you lose!";
-        } else if (
-          computerSelection === "rock" &&
-          playerSelection === "scissors"
-        ) {
-          return "Rock beats scissors you lose!";
-        } else if (
-          computerSelection === "scissors" &&
-          playerSelection === "paper"
-        ) {
-          return "Scissors beats paper you lose!";
-        }
-      }
-
-      console.log(playRound(playerSelection, computerSelection));
+      console.log(game())
     </script>
   </body>
 </html>
