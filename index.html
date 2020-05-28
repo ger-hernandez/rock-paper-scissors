@@ -7,7 +7,9 @@
     <script>
       "use strict";
       function game() {
-        for (let i = 0; i < 5; i++) {
+        let playerScore = 0;
+        let computerScore = 0;
+        function completeRound() {
           function computerPlay() {
             let cpuRandom = Math.floor(Math.random() * Math.floor(3));
             let cpuHand;
@@ -23,7 +25,7 @@
             }
             return cpuHand;
           }
-          const playerSelection = prompt('Choose, rock, paper or scissors');
+          const playerSelection = prompt("Choose: rock, paper or scissors:");
           let computerSelection = computerPlay();
           console.log("the computer played " + computerSelection);
 
@@ -35,38 +37,72 @@
               playerSelection === "rock" &&
               computerSelection == "scissors"
             ) {
+              playerScore += 1;
               return "Rock beats Scissors you win!";
             } else if (
               playerSelection === "scissors" &&
               computerSelection === "paper"
             ) {
+              playerScore += 1;
               return "Scissors beats paper you win!";
             } else if (
               playerSelection === "paper" &&
               computerSelection === "rock"
             ) {
+              playerScore += 1;
               return "Paper beats rock you win!";
             } else if (
               computerSelection === "paper" &&
               playerSelection === "rock"
             ) {
+              computerScore += 1;
               return "Paper beats rock you lose!";
             } else if (
               computerSelection === "rock" &&
               playerSelection === "scissors"
             ) {
+              computerScore += 1;
               return "Rock beats scissors you lose!";
             } else if (
               computerSelection === "scissors" &&
               playerSelection === "paper"
             ) {
+              computerScore += 1;
               return "Scissors beats paper you lose!";
             }
           }
           console.log(playRound(playerSelection, computerSelection));
         }
+
+        function gameCount() {
+          for (let i = 1; i <= 5; i++) {
+            if (playerScore == 3) {
+              console.log("You beat the computer you win!");
+              break;
+            } else if (computerScore == 3) {
+              console.log("The computer beat you, you lose!");
+              break;
+            }
+            completeRound();
+            console.log(
+              `| round: ${i} | Player Score: ${playerScore} | Computer Score: ${computerScore} |`
+            );
+          }
+        }
+
+        function declareWinner (){
+          if (computerScore < playerScore) {
+           console.log("Congratulations on beating the computer!");
+            } else if (computerScore > playerScore) {
+            console.log("You lose this time, but you can try again!");
+               } else if ( computerScore == playerScore) {
+                 console.log("It's a draw, try again!");
+               }
+        }
+        gameCount();
+        declareWinner();
       }
-      console.log(game())
+      game()
     </script>
   </body>
 </html>
